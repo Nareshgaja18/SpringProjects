@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Product</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Custom Styles for Background and Form -->
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5af19, #f12711); /* Beautiful orange-red gradient */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+        }
+        .form-container {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+            color: #333;
+            width: 100%;
+            max-width: 600px;
+        }
+        h2 {
+            color: #f12711;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        .btn-primary {
+            background-color: #f12711;
+            border-color: #f12711;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #d91e08;
+            border-color: #d91e08;
+        }
+        .btn-secondary {
+            background-color: #555;
+            border-color: #555;
+        }
+        .btn-secondary:hover {
+            background-color: #444;
+            border-color: #444;
+        }
+        .form-group label {
+            color: #333;
+            font-weight: 600;
+        }
+        .form-control {
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="form-container">
+                    <h2>Edit Product</h2>
+                    <form th:action="@{/edit/{id}(id=${productModel.id})}" th:object="${productModel}" method="post">
+                        <div class="form-group">
+                            <label for="proName">Product Name</label>
+                            <input type="text" id="proName" th:field="*{proName}" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="proBrand">Product Brand</label>
+                            <input type="text" id="proBrand" th:field="*{proBrand}" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="proPrice">Product Price</label>
+                            <input type="number" id="proPrice" th:field="*{proPrice}" class="form-control" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="proDescription">Product Description</label>
+                            <textarea id="proDescription" th:field="*{proDescription}" class="form-control" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="proCategory">Product Category</label>
+                            <select id="proCategory" th:field="*{proCategory}" class="form-control" required>
+                                <option value="" disabled>Select a category</option>
+                                <option value="Mobile">Mobile</option>
+                                <option value="Laptop">Laptop</option>
+                                <option value="Printer">Printer</option>
+                                <option value="Camera">Camera</option>
+                                <option value="Electronics">Electronics</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Product</button>
+                        <a href="/products" class="btn btn-secondary">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

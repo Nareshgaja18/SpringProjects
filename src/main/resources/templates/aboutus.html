@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>About Us</title>
+    <style>
+        body {
+            background-color: #f0f8ff; /* Light blue background */
+            font-family: Arial, sans-serif;
+        }
+        h1, h2 {
+            color: #003366; /* Dark blue color for headings */
+        }
+        p, ul {
+            color: #333333; /* Darker text for readability */
+        }
+        .container {
+            background-color: #ffffff; /* White background for the content */
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        }
+        .form-control {
+            background-color: #f9f9f9; /* Light background for input fields */
+            border: 1px solid #cccccc;
+        }
+        .btn-primary {
+            background-color: #007bff; /* Blue button color */
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5" th:fragment="content">
+    <h1>About Us</h1>
+
+    <!-- Company Overview -->
+    <div class="mb-4">
+        <h2>Our Company</h2>
+        <p>
+            We are dedicated to providing top-quality products that enhance the lives of our customers. Our commitment to innovation and excellence ensures that we stay ahead in the industry.
+        </p>
+    </div>
+
+    <!-- Vision Statement -->
+    <div class="mb-4">
+        <h2>Our Vision</h2>
+        <p th:text="${visionStatement}">
+            <!-- Default vision statement -->
+            To be a leader in our field, offering reliable and innovative solutions that meet the needs of our customers.
+        </p>
+    </div>
+
+    <!-- Core Values -->
+    <div class="mb-4">
+        <h2>Our Core Values</h2>
+        <ul>
+            <li th:each="value : ${coreValues}">
+                <span th:text="${value}">Customer Satisfaction</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="mb-4">
+        <h2>Contact Us</h2>
+        <p>
+            Have any questions? Reach out to us at 
+            <a th:href="'mailto:' + ${contactEmail}" th:text="${contactEmail}">support@company.com</a>.
+        </p>
+    </div>
+
+    <!-- Feedback Form (optional) -->
+    <div class="mb-4">
+        <h2>Send Us a Message</h2>
+        <form th:action="@{/submitFeedback}" method="post">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
